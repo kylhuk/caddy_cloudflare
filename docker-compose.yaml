@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  caddy:
+    container_name: caddy
+    image: wenga/caddy_cloudflare:latest
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - caddy_caddyfile:/etc/caddy
+      - caddy_site:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_caddyfile:
+  caddy_site:
+  caddy_data:
+  caddy_config:
